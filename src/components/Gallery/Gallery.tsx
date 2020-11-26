@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Modal from '../modal/Modal';
 import classes from "./Gallery.module.css";
 
 interface ImageSource {
@@ -17,8 +18,11 @@ interface ImageData {
 
 const Gallery= () => {
   const [images, setImages] = useState<ImageData[]>([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalImageUrl, setModalImageUrl] = useState('');
   
   useEffect(() => {
+    try{
      const fetchImages = async () => {
       const res = await fetch('https://www.reddit.com/r/nocontextpics.json?raw_json=1');
       const resData = await res.json();
@@ -38,17 +42,31 @@ const Gallery= () => {
       setImages(imageData);
     }
     fetchImages();
+  }
+  catch(err) {
+    console.error(err);
+  }
   }, []);
 
-  console.log(images);
+  const imageClickedHandler = (url:string) => {
+    setModalImageUrl(url);
+    setShowModal(true);
+  }
+
+  if (!images) return <div>Loading...</div>
+
   return (
+    <>
+    {showModal && <Modal show={showModal} closeModal={() => setShowModal(false)} imgUrl={modalImageUrl}/>}
     <div className={classes.Gallery}>
       {images.map((img:ImageData) => (
-        <div key={img.id} className={classes.ImageContainer}>
+        <div key={img.id} className={classes.ImageContainer} onClick={() => imageClickedHandler(img.source.url)}>
           <img  className={classes.Image} src={img.preview.url} alt={img.id} />
-          </div>
+        </div>
       ))}
     </div>
+    
+    </>
   )
 }
 
