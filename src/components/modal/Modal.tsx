@@ -1,5 +1,5 @@
 import React from 'react';
-import Backdrop from '../backdrop/backdrop';
+import {motion} from 'framer-motion';
 import classes from "./Modal.module.css";
 
 type Props = {
@@ -11,9 +11,19 @@ const Modal = ({show, closeModal, imgUrl}:Props) => {
 
 
   return (
-    <div className={classes.Backdrop} onClick={closeModal}>
-      <img onLoad={() => console.log('loaded')} src={imgUrl} alt="hello darkness"/>
-    </div>
+    <motion.div 
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      className={classes.Backdrop} 
+      onClick={closeModal}
+    >
+      <motion.img 
+        initial={{y:'-100vh'}}
+        animate={{y: '0'}}
+        onLoad={() => console.log('loaded')} 
+        src={imgUrl} 
+        alt="hello darkness"/>
+    </motion.div>
   )
 }
 

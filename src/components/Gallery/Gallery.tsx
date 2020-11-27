@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {motion} from 'framer-motion';
 import Modal from '../modal/Modal';
 import classes from "./Gallery.module.css";
 
@@ -53,18 +54,28 @@ const Gallery= () => {
     setShowModal(true);
   }
 
-  if (!images) return <div>Loading...</div>
-
+  if (images.length === 0) return <div>Loading...</div>
   return (
     <>
     {showModal && <Modal show={showModal} closeModal={() => setShowModal(false)} imgUrl={modalImageUrl}/>}
-    <div className={classes.Gallery}>
-      {images.map((img:ImageData) => (
-        <div key={img.id} className={classes.ImageContainer} onClick={() => imageClickedHandler(img.source.url)}>
-          <img  className={classes.Image} src={img.preview.url} alt={img.id} />
-        </div>
+    {images.length>0 && <div className={classes.Gallery}>
+      {images.map((img:ImageData, index:number) => (
+        <motion.div 
+          layout
+          whileHover={{opacity: 1}}
+          key={img.id} 
+          className={classes.ImageContainer} 
+          onClick={() => imageClickedHandler(img.source.url)}>
+          <motion.img
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            transition={{delay: index/10}}
+            className={classes.Image} 
+            src={img.preview.url} 
+            alt={img.id} />
+        </motion.div>
       ))}
-    </div>
+    </div>}
     
     </>
   )

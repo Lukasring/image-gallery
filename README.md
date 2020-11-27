@@ -12,6 +12,6 @@ Only previews are rendered in a grid formation. To get the full image you
 need to click on it, and a modal pops up with the image.
 
 - [x] Implement image modal pop up
-- [ ] Animate modal
+- [x] Animate modal
 - [ ] Fetch more images when scrolled to bottom
 - [ ] Add categories for fetching images
