@@ -4,7 +4,7 @@
 
 > npm start
 
-\*\*[Can Be Viewed HERE!](https://lukasring.github.io/image-gallery/);
+**[Can Be Viewed HERE!](https://lukasring.github.io/image-gallery/)**
 
 ## Info
 
