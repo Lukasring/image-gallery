@@ -1,7 +1,10 @@
-# Getting Started!
+# Reddit Image Gallery!
 
 > npm install
+
 > npm start
+
+\*\*[Can Be Viewed HERE!](https://lukasring.github.io/image-gallery/);
 
 ## Info
 
@@ -13,5 +16,7 @@ need to click on it, and a modal pops up with the image.
 
 - [x] Implement image modal pop up
 - [x] Animate modal
-- [ ] Fetch more images when scrolled to bottom
+- [x] Fetch more images when scrolled to bottom
+- [x] Host on github pages
 - [ ] Add categories for fetching images
+- [ ] Refactor code and make it more readable
